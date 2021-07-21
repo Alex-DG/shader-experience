@@ -1,10 +1,13 @@
-# Three.js - Template - Simple
+# Three.js - Shader experiements
+
+[D e m o](https://shader-experience.netlify.app/)
 
 ## Setup
+
 Download [Node.js](https://nodejs.org/en/download/).
 Run this followed commands:
 
-``` bash
+```bash
 # Install dependencies (only the first time)
 npm install
 
