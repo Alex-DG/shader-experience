@@ -69,7 +69,11 @@ controls.enableDamping = true
  * Torus
  */
 // const geometry = new THREE.TorusKnotBufferGeometry(10, 3, 100, 16)
-const geometry = new THREE.IcosahedronGeometry(10, 8)
+const geometry = new THREE.IcosahedronGeometry(4, 21)
+// const geometry = new THREE.CapsuleGeometry(1, 1, 4, 8)
+// const geometry = new THREE.TorusGeometry(10, 3, 16, 100)
+// const geometry = new THREE.OctahedronGeometry(6, 20)
+// const geometry = new THREE.IcosahedronGeometry(7, 14)
 // const geometry = new THREE.BufferGeometry()
 const count = 5000 * 3 // geometry.attributes.position.count
 const positions = new Float32Array(geometry.attributes.position.count * 3)
@@ -96,6 +100,7 @@ const material = new THREE.ShaderMaterial({
 // })
 
 const points = new THREE.Points(geometry, material)
+points.scale.multiplyScalar(1.2)
 scene.add(points)
 
 /**
@@ -104,6 +109,7 @@ scene.add(points)
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
   antialias: true,
+  alpha: true,
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -123,12 +129,13 @@ const tick = () => {
   controls.update()
 
   // Update points
-  //   points.rotation.y = elapsedTime * 0.5
+  // points.position.z = Math.sin(elapsedTime) * 2
+  // points.rotation.y = elapsedTime
   //   points.rotation.x = elapsedTime * 0.05
   //   points.rotation.z = elapsedTime * 0.05
 
   // Update material
-  material.uniforms.uTime.value = elapsedTime
+  material.uniforms.uTime.value = elapsedTime * 0.25
 
   //   for (let i = 0; i < count; i++) {
   //     const i3 = i * 3 // <=> particlesCount

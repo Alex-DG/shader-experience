@@ -83,14 +83,14 @@ void main() {
     // vec3 newPosition = position;
 
     // float noisy = pow(cnoise(normalize(normalMatrix*normal) + uTime), 3.);
-    float noisy = cnoise(normalize(normalMatrix * normal) + uTime) * 2.5;
-    vec3 newPosition = position + noisy * normal;
+    float noisy = cnoise(normalize(normalMatrix * normal) + sin(uTime*1.5)) * 4.5;
+    vec3 newPosition = position + noisy * normal + sin(uTime*1.2);
 
     vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
-    // modelPosition.z += sin(modelPosition.x + uTime * 0.2);
-    // modelPosition.z += sin(cnoise(position - uTime)) * 2.6;
+    // modelPosition.z += sin(modelPosition.x + uTime * 2.2);
+    // modelPosition.z += sin(cnoise(position - uTime)) * 2.;
 
-    // float elevation = sin(modelPosition.x * 10.0 - uTime) * 0.1;
+    float elevation = sin(modelPosition.z * 10.0 - uTime) * 20.1;
     // elevation += sin(modelPosition.y * 2.0 - uTime);
     // modelPosition.z +=  elevation;
 
@@ -101,7 +101,7 @@ void main() {
     // projectedPosition.x += sin(3.14 * 2.) * 5.;
 
 
-    gl_PointSize = 2.0; 
+    gl_PointSize = 1.5;
     gl_Position = projectedPosition;
     // vec4 modelPosition = modelMatrix * vec4(position, 1.0); 
 
@@ -116,5 +116,5 @@ void main() {
     // gl_Position = projectedPosition;
 
     vUv = uv;
-    // vElevation = elevation;
+    vElevation = elevation;
 }
